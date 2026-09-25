@@ -2,7 +2,7 @@ from fastapi import Depends, FastAPI
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.routers import auth
+from app.routers import auth, menu
 
 app = FastAPI(
     title="The Burger Station API",
@@ -10,6 +10,7 @@ app = FastAPI(
 )
 
 app.include_router(auth.router)
+app.include_router(menu.router)
 
 @app.get("/health")
 def health(db: Session = Depends(get_db)):
