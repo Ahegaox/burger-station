@@ -35,3 +35,16 @@ class UserOut(BaseModel):
     name: str
     email: EmailStr
     created_at: datetime
+
+class LoginRequest(BaseModel):
+    email: EmailStr
+    password: str
+
+    @field_validator("email")
+    @classmethod
+    def normalize_email(cls, value: str) -> str:
+        return value.lower()
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
