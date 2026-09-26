@@ -1,8 +1,10 @@
 from fastapi import Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.routers import auth, menu, orders
+from app.config import settings
 import logging
 import truststore
 
@@ -13,6 +15,13 @@ logging.basicConfig(level=logging.INFO, format="%(levelname)s [%(name)s] %(messa
 app = FastAPI(
     title="The Burger Station API",
     version="0.1.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.cors_origins,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 app.include_router(auth.router)
