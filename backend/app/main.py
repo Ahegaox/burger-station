@@ -3,6 +3,12 @@ from sqlalchemy import text
 from sqlalchemy.orm import Session
 from app.database import get_db
 from app.routers import auth, menu, orders
+import logging
+import truststore
+
+truststore.inject_into_ssl()
+
+logging.basicConfig(level=logging.INFO, format="%(levelname)s [%(name)s] %(message)s")
 
 app = FastAPI(
     title="The Burger Station API",
