@@ -1,13 +1,16 @@
 import { Link, Outlet, useNavigate } from "react-router";
 
 import { useAuth } from "../auth/useAuth";
+import { useCart } from "../cart/useCart";
 
 export default function Layout() {
   const { user, logout } = useAuth();
+  const { totalItems, clearCart } = useCart();
   const navigate = useNavigate();
 
   function handleLogout() {
     logout();
+    clearCart();
     navigate("/login");
   }
 
@@ -23,7 +26,15 @@ export default function Layout() {
             {user ? (
               <>
                 <span className="hidden sm:inline">Hola, {user.name}</span>
-                <button onClick={handleLogout} className="hover:text-orange-600">
+                <Link to="/checkout" className="relative hover:text-orange-600">
+                  🛒 Carrito
+                  {totalItems > 0 && (
+                    <span className="absolute -right-4 -top-2 rounded-full bg-orange-500 px-1.5 text-xs text-white">
+                      {totalItems}
+                    </span>
+                  )}
+                </Link>
+                <button onClick={handleLogout} className="ml-2 hover:text-orange-600">
                   Salir
                 </button>
               </>
