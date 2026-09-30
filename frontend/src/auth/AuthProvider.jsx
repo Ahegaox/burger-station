@@ -8,7 +8,7 @@ const TOKEN_KEY = "burger_token";
 export default function AuthProvider({ children }) {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(() => localStorage.getItem(TOKEN_KEY) !== null);
+  const [loading, setLoading] = useState(() => Boolean(localStorage.getItem(TOKEN_KEY)));
 
   useEffect(() => {
     const savedToken = localStorage.getItem(TOKEN_KEY);
