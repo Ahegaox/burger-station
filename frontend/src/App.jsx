@@ -1,5 +1,7 @@
 import { Navigate, Route, Routes } from "react-router";
 
+import GuestRoute from "./auth/GuestRoute";
+import ProtectedRoute from "./auth/ProtectedRoute";
 import Layout from "./components/Layout";
 import CheckoutPage from "./pages/CheckoutPage";
 import LoginPage from "./pages/LoginPage";
@@ -13,11 +15,18 @@ export default function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route path="/" element={<Navigate to="/menu" replace />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/menu" element={<MenuPage />} />
-        <Route path="/checkout" element={<CheckoutPage />} />
-        <Route path="/orders/:orderId" element={<OrderConfirmationPage />} />
+
+        <Route element={<GuestRoute />}>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Route>
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/menu" element={<MenuPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/orders/:orderId" element={<OrderConfirmationPage />} />
+        </Route>
+
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
