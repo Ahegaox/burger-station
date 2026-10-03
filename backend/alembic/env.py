@@ -13,7 +13,8 @@ from app.config import settings
 from app.database import Base
 import app.models  # noqa: F401  (importa los modelos para que Alembic los vea)
 
-config.set_main_option("sqlalchemy.url", settings.database_url)
+# El "%" se duplica porque alembic.ini lo trata como carácter especial.
+config.set_main_option("sqlalchemy.url", settings.database_url.replace("%", "%%"))
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
