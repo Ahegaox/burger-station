@@ -4,6 +4,8 @@ import { Link } from "react-router";
 import { useAuth } from "../auth/useAuth";
 import FormField from "../components/FormField";
 
+import GlassCard from "../components/GlassCard";
+
 const EMPTY_FORM = { name: "", email: "", password: "", confirmPassword: "" };
 
 function validate(form) {
@@ -70,10 +72,15 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="mx-auto max-w-sm rounded-xl bg-white p-6 shadow">
-      <h1 className="mb-6 text-2xl font-bold">Crear cuenta</h1>
+    <GlassCard className="w-full max-w-[420px] p-7 sm:p-10">
+      <div className="mb-6 flex flex-col gap-1.5">
+        <h1 className="font-display text-[28px] font-bold leading-tight tracking-tight sm:text-[32px]">
+          Crea tu cuenta
+        </h1>
+        <p className="text-[15px] text-ink-soft">Tarda menos que hacer una hamburguesa.</p>
+      </div>
 
-      <form onSubmit={handleSubmit} noValidate className="space-y-4">
+      <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-3.5">
         <FormField
           label="Nombre"
           name="name"
@@ -90,6 +97,7 @@ export default function RegisterPage() {
           onChange={handleChange}
           error={fieldErrors.email}
           autoComplete="email"
+          placeholder="tu@correo.com"
         />
         <FormField
           label="Contraseña"
@@ -110,21 +118,27 @@ export default function RegisterPage() {
           autoComplete="new-password"
         />
 
-        {error && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</p>}
+        {error && (
+          <p role="alert" className="rounded-xl bg-danger/10 px-4 py-3 text-sm text-danger">
+            {error}
+          </p>
+        )}
 
         <button
           type="submit"
           disabled={submitting}
-          className="w-full rounded-lg bg-orange-500 py-2 font-semibold text-white hover:bg-orange-600 disabled:opacity-50"
+          className="mt-1.5 h-[50px] rounded-xl bg-tomato-dark font-semibold text-white shadow-[0_8px_20px_rgba(201,67,30,0.28)] transition hover:brightness-110 disabled:opacity-60"
         >
           {submitting ? "Creando cuenta..." : "Crear cuenta"}
         </button>
       </form>
 
-      <p className="mt-4 text-center text-sm">
+      <p className="mt-6 text-center text-sm text-ink-soft">
         ¿Ya tienes cuenta?{" "}
-        <Link to="/login" className="text-orange-600 underline">Inicia sesión</Link>
+        <Link to="/login" className="font-semibold text-tomato-dark hover:text-petrol">
+          Inicia sesión
+        </Link>
       </p>
-    </div>
+    </GlassCard>
   );
 }

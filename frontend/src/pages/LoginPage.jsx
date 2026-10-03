@@ -4,6 +4,8 @@ import { Link } from "react-router";
 import { useAuth } from "../auth/useAuth";
 import FormField from "../components/FormField";
 
+import GlassCard from "../components/GlassCard";
+
 export default function LoginPage() {
   const { login } = useAuth();
   const [email, setEmail] = useState("");
@@ -25,16 +27,22 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="mx-auto max-w-sm rounded-xl bg-white p-6 shadow">
-      <h1 className="mb-6 text-2xl font-bold">Iniciar sesión</h1>
+    <GlassCard className="w-full max-w-[420px] p-7 sm:p-10">
+      <div className="mb-6 flex flex-col gap-1.5">
+        <h1 className="font-display text-[28px] font-bold leading-tight tracking-tight sm:text-[32px]">
+          Bienvenido de nuevo
+        </h1>
+        <p className="text-[15px] text-ink-soft">Entra para pedir tu hamburguesa favorita.</p>
+      </div>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <FormField
           label="Email"
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           autoComplete="email"
+          placeholder="tu@correo.com"
           required
         />
         <FormField
@@ -46,21 +54,27 @@ export default function LoginPage() {
           required
         />
 
-        {error && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700">{error}</p>}
+        {error && (
+          <p role="alert" className="rounded-xl bg-danger/10 px-4 py-3 text-sm text-danger">
+            {error}
+          </p>
+        )}
 
         <button
           type="submit"
           disabled={submitting}
-          className="w-full rounded-lg bg-orange-500 py-2 font-semibold text-white hover:bg-orange-600 disabled:opacity-50"
+          className="mt-1.5 h-[50px] rounded-xl bg-tomato-dark font-semibold text-white shadow-[0_8px_20px_rgba(201,67,30,0.28)] transition hover:brightness-110 disabled:opacity-60"
         >
           {submitting ? "Entrando..." : "Entrar"}
         </button>
       </form>
 
-      <p className="mt-4 text-center text-sm">
+      <p className="mt-6 text-center text-sm text-ink-soft">
         ¿No tienes cuenta?{" "}
-        <Link to="/register" className="text-orange-600 underline">Regístrate</Link>
+        <Link to="/register" className="font-semibold text-tomato-dark hover:text-petrol">
+          Regístrate
+        </Link>
       </p>
-    </div>
+    </GlassCard>
   );
 }
