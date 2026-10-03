@@ -14,6 +14,7 @@
   --color-tomato-dark: #c9431e;
   --color-tomato-tint: #fce6da;
   --color-mustard: #f3a712;
+  --color-mustard-dark: #9a6a08;
   --color-mustard-tint: #fdf0d2;
   --color-danger: #b3261e;
 }
@@ -22,4 +23,14 @@ body {
   background-color: var(--color-cream);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

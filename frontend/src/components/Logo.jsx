@@ -12,7 +12,7 @@ export default function Logo({ compact = false }) {
       </div>
       <span
         className={`font-display font-bold tracking-tight text-petrol ${
-          compact ? "text-xl" : "text-2xl"
+          compact ? "text-[17px] sm:text-xl" : "text-2xl"
         }`}
       >
         The Burger Station
