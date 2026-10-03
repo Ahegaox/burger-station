@@ -5,9 +5,9 @@ Frontend en React, backend en Python con FastAPI y base de datos PostgreSQL, tod
 
 ## Enlaces
 
-- Aplicación: _pendiente_
-- Swagger: _pendiente_
-- Figma: _pendiente_
+- Aplicación: https://burger-station-carlos.onrender.com
+- Swagger: https://burger-station-carlos-api.onrender.com/docs
+- Figma: https://www.figma.com/design/c2vPdXdaK2hzH5XRo8TpYr/The-Burger-Station?node-id=0-1 (El diseño (paleta, tipografías y estructura de las pantallas) se definió antes de programar la interfaz. Las pantallas del archivo están importadas desde la app desplegada.)
 
 ## Ejecutar en local
 
